@@ -48,9 +48,9 @@ def move(S,p,col_num):
 def move_at_random(S):
 	'''
 	@param S: 6x7 grid containing the current game state
-	moves at random
+	moves at random 
 	'''
-	return np.random.randint(0,S.shape[0])
+	return np.random.randint(0,S.shape[1])
 
 
 #neat and ugly but the fastest way to search a matrix for a vector is a string find

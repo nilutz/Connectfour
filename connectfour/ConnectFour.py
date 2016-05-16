@@ -181,11 +181,6 @@ class ConnectFourGrid(GridLayout):
 
 		by clicking a button on the gui a cell_num(0-56) is passed 
 		'''
-		#no move possible -> end game
-		if move_still_possible(self.grid):
-			self.result_popup()
-			return
-		
 		#last number is column
 		col_num  = cell_num%10
 		#if move allowed -> do stuff
@@ -202,6 +197,11 @@ class ConnectFourGrid(GridLayout):
 						self.set_symbol(cell_num, col_num, self.cur_player)
 						break
 
+		#no move possible -> end game
+		if move_still_possible(self.grid):
+			self.result_popup()
+			return
+	
 	def set_symbol(self, cell, num, symbol):
 		'''
 		@param cell : which button is pressed
