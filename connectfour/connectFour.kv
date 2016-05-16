@@ -1,0 +1,444 @@
+#:kivy 1.0.9
+
+
+<ConnectFourGrid>:
+	canvas.before:
+		Color:
+			rgba: 255 ,255, 255, 0.9
+		Rectangle:
+			pos: self.pos
+			size: self.size
+
+	xo_cell_00:xo_cell_00
+	xo_cell_01:xo_cell_01
+	xo_cell_02:xo_cell_02
+	xo_cell_03:xo_cell_03
+	xo_cell_04:xo_cell_04
+	xo_cell_05:xo_cell_05
+	xo_cell_06:xo_cell_06
+	xo_cell_10:xo_cell_10
+	xo_cell_11:xo_cell_11
+	xo_cell_12:xo_cell_12
+	xo_cell_13:xo_cell_13
+	xo_cell_14:xo_cell_14
+	xo_cell_15:xo_cell_15
+	xo_cell_16:xo_cell_16
+	xo_cell_20:xo_cell_20
+	xo_cell_21:xo_cell_21
+	xo_cell_22:xo_cell_22
+	xo_cell_23:xo_cell_23
+	xo_cell_24:xo_cell_24
+	xo_cell_25:xo_cell_25
+	xo_cell_26:xo_cell_26
+	xo_cell_30:xo_cell_30
+	xo_cell_31:xo_cell_31
+	xo_cell_32:xo_cell_32
+	xo_cell_33:xo_cell_33
+	xo_cell_34:xo_cell_34
+	xo_cell_35:xo_cell_35
+	xo_cell_36:xo_cell_36
+	xo_cell_40:xo_cell_40
+	xo_cell_41:xo_cell_41
+	xo_cell_42:xo_cell_42
+	xo_cell_43:xo_cell_43
+	xo_cell_44:xo_cell_44
+	xo_cell_45:xo_cell_45
+	xo_cell_46:xo_cell_46
+	xo_cell_50:xo_cell_50
+	xo_cell_51:xo_cell_51
+	xo_cell_52:xo_cell_52
+	xo_cell_53:xo_cell_53
+	xo_cell_54:xo_cell_54
+	xo_cell_55:xo_cell_55
+	xo_cell_56:xo_cell_56
+
+	spiner: spiner
+
+
+    BoxLayout:
+        size_hint: 1, 1
+        orientation: 'vertical'
+
+        BoxLayout:
+            padding: 10
+            spacing: 10
+            height: 50
+            size_hint: 1, None
+            canvas.before:
+				Color:
+					rgba: 0, 0, 0, 1
+				Rectangle:
+					pos: self.pos
+					size: self.size
+            Label:
+            	id:label
+                text: 'Connect Four'
+                height: 50
+            Button:
+                id: restart
+                text: 'Restart'
+                on_press: root.new_game()
+                border: 0,0,0,0
+
+            Spinner:
+                id: spiner
+                text: 'Player vs Player'
+                values: 'Player vs Player', 'Player vs PC', 'PC vs PC'
+
+            Button:
+                id: exit
+                text: 'Exit'
+                on_press: root.exit()
+                border: 0,0,0,0
+
+
+        BoxLayout:
+            padding: 10
+            spacing: 10
+            orientation: 'horizontal'
+
+            Button:
+                id: xo_cell_00
+                text: ''
+                on_press: root.click(00)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_01
+                text: ''
+                on_press: root.click(01)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_02
+                text: ''
+                on_press: root.click(02)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+            Button:
+                id: xo_cell_03
+                text: ''
+                on_press: root.click(03)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_04
+                text: ''
+                on_press: root.click(04)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_05
+                text: ''
+                on_press: root.click(05)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+            Button:
+                id: xo_cell_06
+                text: ''
+                on_press: root.click(06)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+		BoxLayout:
+            padding: 10
+            spacing: 10
+            orientation: 'horizontal'
+
+            Button:
+                id: xo_cell_10
+                text: ''
+                on_press: root.click(10)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_11
+                text: ''
+                on_press: root.click(11)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_12
+                text: ''
+                on_press: root.click(12)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+            Button:
+                id: xo_cell_13
+                text: ''
+                on_press: root.click(13)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_14
+                text: ''
+                on_press: root.click(14)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_15
+                text: ''
+                on_press: root.click(15)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+            Button:
+                id: xo_cell_16
+                text: ''
+                on_press: root.click(16)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+		BoxLayout:
+            padding: 10
+            spacing: 10
+            orientation: 'horizontal'
+
+            Button:
+                id: xo_cell_20
+                text: ''
+                on_press: root.click(20)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_21
+                text: ''
+                on_press: root.click(21)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_22
+                text: ''
+                on_press: root.click(22)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+            Button:
+                id: xo_cell_23
+                text: ''
+                on_press: root.click(23)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_24
+                text: ''
+                on_press: root.click(24)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_25
+                text: ''
+                on_press: root.click(25)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+            Button:
+                id: xo_cell_26
+                text: ''
+                on_press: root.click(26)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+		BoxLayout:
+            padding: 10
+            spacing: 10
+            orientation: 'horizontal'
+
+            Button:
+                id: xo_cell_30
+                text: ''
+                on_press: root.click(30)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_31
+                text: ''
+                on_press: root.click(31)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_32
+                text: ''
+                on_press: root.click(32)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+            Button:
+                id: xo_cell_33
+                text: ''
+                on_press: root.click(33)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_34
+                text: ''
+                on_press: root.click(34)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_35
+                text: ''
+                on_press: root.click(35)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+            Button:
+                id: xo_cell_36
+                text: ''
+                on_press: root.click(36)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+		BoxLayout:
+            padding: 10
+            spacing: 10
+            orientation: 'horizontal'
+
+            Button:
+                id: xo_cell_40
+                text: ''
+                on_press: root.click(40)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_41
+                text: ''
+                on_press: root.click(41)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_42
+                text: ''
+                on_press: root.click(42)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+            Button:
+                id: xo_cell_43
+                text: ''
+                on_press: root.click(43)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_44
+                text: ''
+                on_press: root.click(44)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_45
+                text: ''
+                on_press: root.click(45)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+            Button:
+                id: xo_cell_46
+                text: ''
+                on_press: root.click(46)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+		BoxLayout:
+            padding: 10
+            spacing: 10
+            orientation: 'horizontal'
+
+            Button:
+                id: xo_cell_50
+                text: ''
+                on_press: root.click(50)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_51
+                text: ''
+                on_press: root.click(51)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_52
+                text: ''
+                on_press: root.click(52)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+            Button:
+                id: xo_cell_53
+                text: ''
+                on_press: root.click(53)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_54
+                text: ''
+                on_press: root.click(54)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+
+            Button:
+                id: xo_cell_55
+                text: ''
+                on_press: root.click(55)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
+            Button:
+                id: xo_cell_56
+                text: ''
+                on_press: root.click(56)
+                border: 0,0,0,0
+                background_normal: 'images/blank.png'
+                background_down: 'images/down.png'
