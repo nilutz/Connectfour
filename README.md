@@ -1,13 +1,19 @@
 Connect Four
 =========
-This is a joint project of Eva, Kanil, Pascal, Anna Lena, Tim and Nico for the Game AI course in SS 2016
+This is a joint project of Eva, Kanil, Pascal, Anna Lena and Nico for the Game AI course in SS 2016
 
 Connect Four - it's a game! 
 
 written with [Kivy](http://kivy.org "Kivy") (Open source Python library for rapid development of applications)
 
 =========
-To test [install](https://kivy.org/#download) kivy and cd into /connectfour , run
+* To test [install](https://kivy.org/#download) kivy 
+
+* and the dependencies
+
+	kivy -m pip install numpy
+
+* and cd into /connectfour , run
 
 	kivy main.py
 
@@ -15,12 +21,13 @@ To build install [buildozer](https://github.com/kivy/buildozer) with
 
 	pip install buildozer
 
-some tips for building:
-* use path to connectfour folder without spaces (is os bug)
+
+
+some tips for building on OSX: 
 * cd to folder one before connectfour and run
 	buildozer osx release
-* if building of osx: change osx.py in buildozer from builddir to build_dir (is bug)
 * use provided buildozer.spec
+* if builddir error: change osx.py in buildozer from builddir to build_dir ...pullrequest! 
 * if venv error try downgrading to python 2.7.9 
 
 =========
