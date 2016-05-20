@@ -7,15 +7,20 @@ Connect Four - it's a game!
 written with [Kivy](http://kivy.org "Kivy") (Open source Python library for rapid development of applications)
 
 =========
-* To test [install](https://kivy.org/#download) kivy 
+* To test: [install](https://kivy.org/#download) kivy for your OS
 
-* and the dependencies
+* and add the dependencies
 
-	kivy -m pip install numpy
+		kivy -m pip install numpy
 
-* and cd into /connectfour , run
+* cd into /connectfour , run
 
-	kivy main.py
+		kivy main.py
+
+	on linux/windows
+
+		python main.py
+
 
 To build install [buildozer](https://github.com/kivy/buildozer) with
 
@@ -27,7 +32,7 @@ some tips for building on OSX:
 * cd to folder one before connectfour and run
 	buildozer osx release
 * use provided buildozer.spec
-* if builddir error: change osx.py in buildozer from builddir to build_dir ...pullrequest! 
+* if builddir error: change osx.py in buildozer from builddir to build_dir (pullrequest is merged)
 * if venv error try downgrading to python 2.7.9 
 
 =========
