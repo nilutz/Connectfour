@@ -6,6 +6,8 @@ from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.properties import ObjectProperty
 
+from kivy.clock import Clock
+
 import numpy as np
 from Mechanics import *
 
@@ -18,6 +20,7 @@ class ConnectFourGrid(GridLayout):
 	player = True
 	with_pc = False
 	WinnerYet = False
+	pcvspc = False
 
 	spiner = ObjectProperty(None)
 
@@ -141,22 +144,28 @@ class ConnectFourGrid(GridLayout):
 		self.cur_player = self.player_1
 		self.WinnerYet = False
 
+		if self.pcvspc:
+			self.startpcvspc()
+
 	def spiner_change(self, instance, text):
 		'''controls the spinner
 		'''
 		if text == 'Player vs Player':
 			self.with_pc = False
+			self.pcvspc = False
 			self.new_game()
 		if text == 'Player vs PC':
 			self.with_pc = True
+			self.pcvspc = False
 			self.new_game()
 		if text == 'PC vs PC':
-			self.startpcvspc()
+			self.pcvspc = True
+			self.new_game()
+
 
 	def startpcvspc(self):
 		'''lets play 2 pcs against each other
 		'''
-		self.new_game()
 		noWinnerYet = True
 		while noWinnerYet:
 			cell_num = move_at_random(self.grid)
@@ -168,6 +177,8 @@ class ConnectFourGrid(GridLayout):
 			
 			#last number is column
 			col_num  = cell_num%10
+
+
 			#if move allowed -> do stuff
 			if  move_is_correct(self.grid, col_num):
 				self.set_symbol(cell_num, col_num, self.cur_player)
