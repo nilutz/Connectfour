@@ -15,7 +15,6 @@ class Minmax(object):
     The score evaluates a heuristic.
     '''
     
-    count = 0
     DIC ={}
     
     def __init__(self):
@@ -120,12 +119,12 @@ class Minmax(object):
         
         board: a gameState 
         depth: depth parameter of search tree
+        alpha: alpha for alphabeta pruning
+        beta: beta for alphabeta pruning
         cur_player: the current_player's number
         
         return best score
         '''
-        self.count = self.count+1
-        print board
 
         #eval current player
         if cur_player == 1:
@@ -190,12 +189,13 @@ class Minmax(object):
         
         board: a gameState 
         depth: depth parameter of search tree
+        alpha: alpha for alphabeta pruning
+        beta: beta for alphabeta pruning
         cur_player: the current_player's number
         
         return best score
         '''
-        self.count = self.count+1
-        print board
+
 
         #eval current player
         if cur_player == 1:
@@ -262,7 +262,6 @@ class Minmax(object):
         
         return best score, best move
         '''
-        self.count = self.count+1
         
         #eval current player
         if cur_player == 1:
@@ -477,15 +476,8 @@ if __name__ == '__main__':
     if noWinnerYet:
         print 'game ended in a draw' 
 
-    #save new DIC to increase
+    #save new DIC for better Hashing
     if le < len(m.DIC):
         m.save_obj(m.DIC,'scores')
     
-    print 'length of DIC:',len(m.DIC)
-    print 'number of nodes:', m.count
-
-
-# In[ ]:
-
-
 
