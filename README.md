@@ -18,6 +18,20 @@ Mechanics.py - The mechanics for the game like making a random move or checking 
 ConnectFour.py - The Visualization for the Buttons, slider, popup windows etc. This calls the mechanics of connect four.
 connectfour.kv - Creates the widget tree and binds widget properties
 
+
+=========
+UPDATE 15.06.2016
+
+Task 2.3
+now you play against an AI, implemented as a Minmax with score-Hashing and alpha beta pruning
+added files
+
+scores.pkl
+Player.py
+Minmax.py
+
+you my need to install pickle.
+
 =========
 For testing: 
 
