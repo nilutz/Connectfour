@@ -10,6 +10,7 @@ from kivy.clock import Clock
 
 import numpy as np
 from Mechanics import *
+from Player import *
 
 class ConnectFourGrid(GridLayout):
 	'''
@@ -21,6 +22,7 @@ class ConnectFourGrid(GridLayout):
 	with_pc = False
 	WinnerYet = False
 	pcvspc = False
+	with_ai = False
 
 	spiner = ObjectProperty(None)
 
@@ -140,7 +142,22 @@ class ConnectFourGrid(GridLayout):
 		for key, btn in self.cells.items():
 			btn.background_normal = 'images/blank.png'
 
-		self.player_1, self.player_2 = 1, 2
+
+		#Human vs PC
+		if(self.with_pc):
+			self.player_1, self.player_2 = Human(1), RandomPC(2)
+		#Random PC vs Random PC
+		elif(self.pcvspc):
+			self.player_1, self.player_2 = RandomPC(1), RandomPC(2)
+		#Human vs AI (Ai must be player 1 since it hasing is trained on 1)
+		elif(self.with_ai):
+			self.player_1, self.player_2 = Human(2), AiPC(1,3)
+		#Human vs Human
+		else:
+			self.player_1, self.player_2 = Human(1), Human(2)
+
+
+		#self.player_1, self.player_2 = 1, 2
 		self.cur_player = self.player_1
 		self.WinnerYet = False
 
@@ -150,16 +167,21 @@ class ConnectFourGrid(GridLayout):
 	def spiner_change(self, instance, text):
 		'''controls the spinner
 		'''
+		self.with_ai = False
+		self.pcvspc = False
+		self.with_pc = False
+
 		if text == 'Player vs Player':
 			self.with_pc = False
-			self.pcvspc = False
 			self.new_game()
 		if text == 'Player vs PC':
 			self.with_pc = True
-			self.pcvspc = False
 			self.new_game()
 		if text == 'PC vs PC':
 			self.pcvspc = True
+			self.new_game()
+		if text == 'Player vs AI':
+			self.with_ai = True
 			self.new_game()
 
 
@@ -181,9 +203,10 @@ class ConnectFourGrid(GridLayout):
 
 			#if move allowed -> do stuff
 			if  move_is_correct(self.grid, col_num):
-				self.set_symbol(cell_num, col_num, self.cur_player)
+				self.set_symbol(cell_num, col_num, self.cur_player.symbol)
 
-			if move_was_winning_move(self.grid, self.cur_player):
+			win , _ = move_was_winning_move(self.grid, self.cur_player.symbol, 4)
+			if win:
 				noWinnerYet = False
 
 	def click(self, cell_num):
@@ -196,22 +219,34 @@ class ConnectFourGrid(GridLayout):
 		col_num  = cell_num%10
 		#if move allowed -> do stuff
 		if  move_is_correct(self.grid, col_num):
-			self.set_symbol(cell_num, col_num, self.cur_player)
+			self.set_symbol(cell_num, col_num, self.cur_player.symbol)
 			
 			if self.with_pc and not self.WinnerYet:			
 
 				while True: 
-					cell_num = move_at_random(self.grid)
+					cell_num = self.cur_player.move(self.grid)
 					col_num  = cell_num%10
 
 					if move_is_correct(self.grid, col_num):
-						self.set_symbol(cell_num, col_num, self.cur_player)
+						self.set_symbol(cell_num, col_num, self.cur_player.symbol)
 						break
+
+			if self.with_ai and not self.WinnerYet:
+
+				while True: 
+					cell_num = self.cur_player.move(self.grid, self.cur_player.symbol)
+					col_num  = cell_num%10
+
+					if move_is_correct(self.grid, col_num):
+						self.set_symbol(cell_num, col_num, self.cur_player.symbol)
+						break
+
 
 		#no move possible -> end game
 		if move_still_possible(self.grid):
 			self.result_popup()
 			return
+
 	
 	def set_symbol(self, cell, num, symbol):
 		'''
@@ -221,12 +256,14 @@ class ConnectFourGrid(GridLayout):
 
 		sets state in the grid and moves forward with the game
 		'''
-		self.grid , x, y = move(self.grid, self.cur_player, num)
+		self.grid , x, y = move(self.grid, self.cur_player.symbol, num)
 
 		cell = x*10+y
+
 		self.cells[cell].background_normal = 'images/%s.png' % symbol
 
-		if move_was_winning_move(self.grid, self.cur_player):
+		win, _ = move_was_winning_move(self.grid, self.cur_player.symbol, 4)
+		if win:
 			self.WinnerYet = True
 			self.result_popup()
 			return
@@ -239,11 +276,11 @@ class ConnectFourGrid(GridLayout):
 	def result_popup(self):
 		'''pop up for congratulating the user
 		'''
-
-		if move_was_winning_move(self.grid, self.cur_player):
+		win, _ = move_was_winning_move(self.grid, self.cur_player.symbol,4) 
+		if win:
 			title = 'Congratulation!!!'
 			
-			if self.cur_player == 1:
+			if self.cur_player.symbol == 1:
 				message = '%s wins' %'Blue'
 			else:
 				message = '%s wins' %'Red'

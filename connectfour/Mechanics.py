@@ -54,33 +54,48 @@ def move_at_random(S):
 
 
 #neat and ugly but the fastest way to search a matrix for a vector is a string find
-player1 = '1 1 1 1'
-oponent = '2 2 2 2'
+#neat and ugly but the fastest way to search a matrix for a vector is a string find
+player1=[' ','1', '1 1', '1 1 1', '1 1 1 1']
+oponent=[' ','1', '2 2', '2 2 2', '2 2 2 2']
 
-def move_was_winning_move(S, p):
-	'''
-	@param S: 6x7 grid containing the current game state
-	@param p: current player
 
-	combines all the allowed formations of the grid and string_finds with 
-	the currents player vector. Returns true if match.
-	'''
-	if p == 1:
-		match = player1
-	else:
-		match = oponent 
+def move_was_winning_move(S, p, num):
+    '''
+    @param S: 6x7 grid containing the current game state
+    @param p: current player
+    @param num: how many occurences to count
+    
+    combines all the allowed formations of the grid and string_finds with 
+    the currents player vector. Returns true if match.
+    
+    return: True or False whether move was winning move or not,
+            and count of occurences
+    '''
+    if p == 1:
+        match = player1[num]
+    else:
+        match = oponent[num]
 
-	l=[]
-	#for every possible diag
-	for i in range(-2,4):
-		l.append(np.diag(S,k = i))
-		l.append(np.diag(np.fliplr(S),k=i))
-	#left to right
-	l.append(S)
-	#top to bottom
-	l.append(np.rot90(S)) 
-
-	if ''.join(np.array_str(e) for e in l).find(match) > -1:
-		return True
-	return False
+    l=[]
+    #for every possible diag
+    for i in range(-2,4):
+        l.append(np.diag(S,k = i))
+        l.append(np.diag(np.fliplr(S),k=i))
+    #left to right
+    l.append(S)
+    #top to bottom
+    l.append(np.rot90(S)) 
+    
+    #convert to string
+    stringmatrix =''.join(np.array_str(e) for e in l)
+    
+    #count the occurences
+    counter = stringmatrix.count(match)
+    
+    #print stringmatrix
+    
+    #if four in a row
+    if num == 4 and counter == 1:
+        return True, counter
+    return False, counter
 
